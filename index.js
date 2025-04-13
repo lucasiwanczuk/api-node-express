@@ -16,6 +16,7 @@ app.get('/', (req, res) => {
     req.path;
     res.status(200);
     res.json(data);
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.originalUrl}`)
 });
 
 app.listen(port, () => {
