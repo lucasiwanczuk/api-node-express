@@ -13,6 +13,8 @@ var data = [
 ];
 
 app.get('/', (req, res) => {
+    req.path;
+    res.status(200);
     res.json(data);
 });
 
