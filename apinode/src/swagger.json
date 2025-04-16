@@ -1,0 +1,57 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API para Produtos/Estoque",
+    "description": "Essa API tem como objetivo manipular produtos e estoque",
+    "termsOfService": "/terms",
+    "contact": {
+      "email": "contato@lucasiwanczuk.dev"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/v1",
+      "description": "API de testes"
+    }
+  ],
+  "paths": {
+    "/products": {
+      "post": {
+        "tags": ["Products"],
+        "summary": "Cadastro de produtos",
+        "description": "Rota para realizar cadastro de produtos",
+        "requestBody": {
+          "content": {
+            "application/json": {
+                "schema" : {
+                    "$ref": "#/components/schemas/Products"
+                }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+        "Products": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "id": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { v4 as uuid } from "uuid";
 import { ensureAuth } from './middleware';
-import { request } from 'http';
+
 
 const router = Router();
 
@@ -17,6 +17,15 @@ const products: ProductsDTO[] = [];
 router.get("/products/findByName", (request, response) => {
     const { name } = request.query;
     const product = products.filter((p) => p.name.includes(String(name)));
+    
+    const productNotExist = products.find(
+        (product) => product.name != name
+    );
+
+    if (productNotExist){
+        return response.status(404).json({ message: "Produto não existe!"});
+    }
+
     return response.json(product);
 });
 
