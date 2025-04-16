@@ -23,17 +23,17 @@ router.get("/products/findByName", (request, response) => {
     );
 
     if (productNotExist){
-        return response.status(404).json({ message: "Produto não existe!"});
+        return response.status(404).json({ message: "Produto não encontrado!"});
     }
 
     return response.json(product);
 });
 
-router.get("/products:id"), (request: any, response: any) => {
+router.get("/products/:id", (request, response) => {
     const { id } = request.params;
     const product = products.find((product) => product.id === id);
     return response.json(product);
-}
+});
 
 router.post("/products", ensureAuth, (request, response) =>{
     const { name, description, price } = request.body;

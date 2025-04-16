@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.0.0",
   "info": {
     "title": "API para Produtos/Estoque",
     "description": "Essa API tem como objetivo manipular produtos e estoque",
@@ -19,14 +19,181 @@
     "/products": {
       "post": {
         "tags": ["Products"],
+        "security": [{ "bearerAuth": [] }],
         "summary": "Cadastro de produtos",
         "description": "Rota para realizar cadastro de produtos",
         "requestBody": {
           "content": {
             "application/json": {
-                "schema" : {
-                    "$ref": "#/components/schemas/Products"
+              "schema": {
+                "$ref": "#/components/schemas/Products"
+              },
+              "examples": {
+                "product": {
+                  "value": {
+                    "name": "Teclado Red Dragon",
+                    "description": "Teclado Red Dragon USB RGB",
+                    "price": 377
+                  }
                 }
+              }
+            }
+          }
+        },
+        "responses": {
+          "401": {
+            "description": "Unauthorized!"
+          },
+          "400": {
+            "description": "Product Already Exists!"
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "items": {
+                    "$ref": "#/components/schemas/Products"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/findByName": {
+      "get": {
+        "tags": ["Products"],
+        "summary": "Consulta de produtos",
+        "description": "Rota para realizar consulta de produtos pelo nome",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Nome do produto para realizar consulta",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "items": {
+                    "$ref": "#/components/schemas/Products"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "get": {
+        "tags": ["Products"],
+        "summary": "Consulta de produtos",
+        "description": "Rota para realizar consulta de produtos pelo ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do produto para realizar consulta",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "items": {
+                    "$ref": "#/components/schemas/Products"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Products"],
+        "security": [{ "bearerAuth": [] }],
+        "summary": "Atualiza produtos",
+        "description": "Rota para realizar a atualização de produtos pelo ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do produto para realizar consulta",
+            "required": true
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Nome do produto",
+            "required": false
+          },
+          {
+            "name": "description",
+            "in": "query",
+            "description": "Descrição do produto",
+            "required": false
+          },
+          {
+            "name": "price",
+            "in": "query",
+            "description": "Preço do produto",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "items": {
+                    "$ref": "#/components/schemas/Products"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Products"],
+        "security": [{ "bearerAuth": [] }],
+        "summary": "Deleta produtos",
+        "description": "Rota para excluir produtos pelo ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do produto a ser excluido",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "items": {
+                    "$ref": "#/components/schemas/Products"
+                  }
+                }
+              }
             }
           }
         }
@@ -35,23 +202,30 @@
   },
   "components": {
     "schemas": {
-        "Products": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "price": {
-                    "type": "number"
-                },
-                "id": {
-                    "type": "string"
-                }
-            }
+      "Products": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          },
+          "id": {
+            "type": "string"
+          }
         }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
     }
   }
 }
