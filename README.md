@@ -5,7 +5,7 @@ API RESTful criada para gerenciamento de produtos. Permite operações como cria
 
 ---
 
-<img src="https://raw.githubusercontent.com/lucasiwanczuk/api-node-express/apinode/api.png" style="width:100%; border-radius: 8px;" />
+<img src="https://raw.githubusercontent.com/lucasiwanczuk/api-node-express/main/apinode/api.png" style="width:100%; border-radius: 8px;" />
 
 ---
 
