@@ -1,4 +1,4 @@
-# 📌 API RESTful com Swagger
+# 📌 API RESTful - SQLite + Prisma
 
 🚀 **Descrição do Projeto:**  
 API RESTful criada para gerenciamento de produtos. Permite operações como criação, leitura, atualização e exclusão de itens, com endpoints documentados via Swagger. Ideal como base para aplicações e-commerce, dashboards administrativos ou sistemas de catálogo.
@@ -21,7 +21,8 @@ Focado na construção de uma API robusta, documentada e pronta para integraçã
 - ✅ Cadastro de produtos com nome, descrição, preço e categoria  
 - ✅ Atualização e remoção de produtos via ID  
 - ✅ Listagem de produtos com suporte a filtros  
-- ✅ Documentação completa dos endpoints com Swagger  
+- ✅ Documentação completa dos endpoints com Swagger
+- ✅ Banco de dados SQLite + Prisma  
 
 ---
 
@@ -31,7 +32,7 @@ Focado na construção de uma API robusta, documentada e pronta para integraçã
 |----------------|-------------------------------------------------|
 | Backend        | Node.js, TypeScript, Express, PostgreSQL        |
 | Documentação   | Swagger (swagger-ui-express, YAML ou JSON)      |
-
+| Banco de Dados | SQLite + Prisma                                 |
 ---
 
 ## 📦 Instalação e Execução
